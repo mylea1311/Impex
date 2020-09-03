@@ -1,0 +1,75 @@
+ <form method="POST" action="php/global.php">
+                     <p>
+                        <label for="nom">Enregistrer un identifiant : </label><br>
+                        <input type="text" id="nom" name="nom" placeholder="Identifiant de connexion" />
+                     </p>
+                     <p>
+                        <label for="age">Quel est votre âge ?</label><br>
+                        <input type="number" min="12" max="120" step="1" id="age" name="age" placeholder="Saisir votre âge" pattern="\d+">
+                     </p>
+                     <p>
+                        <label for="email">Votre email</label><br>
+                        <input type="text" id="email" name="email" placeholder="Votre email" /><br>
+                     </p>
+                     <p>
+                        Enregistrer votre mot de passe : <br> <input name='mdp' type='password' value='' placeholder="Votre mot de passe"><br>
+                        <p>
+                           Confirmer votre mot de passe : <br> <input name='mdpConfirm' type='password' value='' placeholder="Confirmation mot de passe"><br>
+                           <br> <input value='Valider' type='submit'>
+                        </p>
+                        <input type='hidden' value='1' name='inscription'>
+                  </form>
+
+
+
+                  //////////////////
+
+
+                        <form action="php/global.php" method="POST">
+              <p>
+                <label for="nom">Votre nom</label><br>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom" />
+              </p>
+              <p>
+                <label for="prenom">Votre prenom</label><br>
+                <input type="text" id="prenom" name="prenom" placeholder="Votre prenom" />
+              </p>
+              <p>
+                <label for="age">Quel est votre âge ?</label><br>
+                <!-- L'attribut pattern peut servir de recours pour les navigateurs dont le type number n'est
+                       pas implémenté pour input mais qui prennent en charge l'attribut pattern. Veuillez noter
+                       que les navigateurs prenant en charge l'attribut pattern ne signalent pas d'erreur quand
+                       il est utilisé avec un champ number. Seule son utilisation ici agit en tant que recours. -->
+                <input type="number" min="12" max="120" step="1" id="age" name="age" placeholder="Saisir votre âge" pattern="\d+">
+              </p>
+              <p>
+                <label for="email">Votre email</label><br>
+                <input type="text" id="email" name="email" placeholder="Saisir votre email" />
+              </p>
+
+              <div class="label">
+                <div>
+                  <input type="radio" name="sexe" id="sexe" value="h" checked="checked">
+                  <label for="sexe">une homme</label>
+                </div>
+                <div> <input type="radio" name="sexe" id="sexe" value="f" checked="checked">
+
+                  <label for="sexe">une femme</label>
+                </div>
+                </p>
+                <p>
+                  <label for="memo">Tapez un commentaire sur le contact</label><br>
+                  <textarea name="com" id="memo" cols="30" rows="10" placeholder="Commentaire"></textarea>
+
+                </p>
+                <label for="groupe">Groupe de contacts</label><br>
+                <select name="groupe" id="groupe">
+                  <option value="famille">famille</option>
+                  <option value="travail">travail</option>
+                  <option value="ami">ami</option>
+                  <option value="autres">autres</option>
+                </select>
+                <br>
+                <br>
+                <input type="submit" id="bla" value="Enregistrer">
+            </form>

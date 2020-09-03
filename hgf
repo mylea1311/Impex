@@ -1,0 +1,130 @@
+<?php
+
+
+// Ouverture des sessions sur la page web//
+session_start();
+
+//Co en BDD
+$pdo = pdo_connect_mysql();
+
+
+//------------------------//
+////////////déconnexion//////////////
+//------------------------//
+if ($_GET['deco'] == 1) {
+
+   echo "Vous avez déconnectez votre compte";
+   session_destroy();
+   session_start();
+   $_SESSION['co'] = false;
+}
+//------------------------//
+////////////Fin déconnexion//////////////
+//------------------------//
+
+
+
+//------------------------//
+////////////Verification MDP et user en DURE //////////////
+//------------------------//
+$info_user = $pdo->query('SELECT * FROM user WHERE mail="' . $_POST['user'] . '" AND mdp="' . $_POST['mdp'] . '"  ')->fetchColumn();
+
+if ($info_user['user'] != '') {
+   // }
+
+   // if ($_POST['mdp'] == 'monmdp' && $_POST['user'] == 'Mylea' && $_GET['co'] == false) {
+
+
+   // $SQL_Verif_User = ('SELECT * FROM user WHERE mdp="' . $_POST['mdp'] . '" AND mail="' . $_POST['mail'] . '" ');
+
+   $_SESSION['user'] = 'Mylea';
+   $_SESSION['Age'] = '8 ans';
+   $style = 'enfante';
+   $_SESSION['co'] = true;
+}
+//------------------------//
+////////////Verification MDP et user en DURE //////////////
+//------------------------//
+//------------------------//
+////////////Echec MDP et user //////////////
+//------------------------//
+elseif ($_POST['mdp'] != 'monmdp' and $_POST['mdp'] != '' or $_POST['user'] != 'Mylea' and $_POST['user'] != '') {
+
+   echo 'Touche pas mon compte ou tu vas prendre D: ! ';
+}
+//------------------------//
+////////////Verification MDP et user //////////////
+//------------------------//
+
+
+
+
+//------------------------//
+////////////Connexion//////////////
+//------------------------//
+if ($_SESSION['co'] == true) {
+
+   echo "Je suis en ligne !<br>";
+   echo 'Bonjour chère ' . $_SESSION['user'];
+}
+//------------------------//
+////////////Fin Connexion//////////////
+//------------------------//
+
+header('location:index.html');
+
+// var_dump($_SESSION);
+
+?>
+
+<!-- <html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+   <title>Document</title>
+</head>
+
+<body>
+   <h2>CONNEXION</h2>
+
+
+   <form action="traitement.php" method="POST">
+      <p>
+         <label for="nom">Identifiant de connexion : </label><br>
+         <input type="text" id="nom" name="nom" placeholder="Identifiant de connexion" />
+      </p>
+      <p>
+         Votre mot de passe : <br> <input name='mdp' type='password' value='' placeholder="Votre mdp"><br>
+         <br> <input value='Je me co' type='submit'>
+      </p>
+   </form>
+</body>
+
+</html>
+
+
+
+
+</html> -->
+<?php
+
+
+//MEs fonctions
+
+function pdo_connect_mysql()
+{
+   $DB_HOST = 'localhost';
+   $DB_USER = 'root';
+   $DB_PWD = '';
+   $DB_NAME = 'projet_cv';
+   try {
+      return new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PWD);
+   } catch (PDOException $error) {
+      die('Echec de la connexion');
+   }
+}
+
+?>
